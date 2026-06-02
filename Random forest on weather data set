@@ -1,0 +1,25 @@
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
+import matplotlib.pyplot as plt
+data = {
+    'Outlook': ['Sunny','Sunny','Overcast','Rain','Rain','Rain','Overcast','Sunny','Sunny','Rain','Sunny','Overcast','Overcast','Rain'],
+    'Temp': ['Hot','Hot','Hot','Mild','Cool','Cool','Cool','Mild','Cool','Mild','Mild','Mild','Hot','Mild'],
+    'Humidity': ['High','High','High','High','Normal','Normal','Normal','High','Normal','Normal','Normal','High','Normal','High'],
+    'Wind': ['Weak','Strong','Weak','Weak','Weak','Strong','Strong','Weak','Weak','Weak','Strong','Strong','Weak','Strong'],
+    'PlayTennis': ['No','No','Yes','Yes','Yes','No','Yes','No','Yes','Yes','Yes','Yes','Yes','No']
+}
+df = pd.DataFrame(data)
+le = LabelEncoder()
+for column in df.columns:
+    df[column] = le.fit_transform(df[column])
+X = df.drop('PlayTennis', axis=1)
+y = df['PlayTennis']
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X, y)
+importance = model.feature_importances_
+plt.bar(X.columns, importance)
+plt.title("Feature Importance")
+plt.xlabel("Features")
+plt.ylabel("Importance")
+plt.show()
