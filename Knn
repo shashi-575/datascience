@@ -1,0 +1,17 @@
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+from sklearn.neighbors import KNeighborsClassifier
+data = {
+    'Age':[32,40,16,34,34,40,20,15,55,15],
+    'Gender':['M','M','F','F','M','M','F','M','F','M'],
+    'Sport':['Football','Neither','Cricket','Cricket','Neither','Cricket','Neither','Football','Football','Football']
+}
+df = pd.DataFrame(data)
+le = LabelEncoder()
+df['Gender'] = le.fit_transform(df['Gender'])
+df['Sport'] = le.fit_transform(df['Sport'])
+X = df[['Age','Gender']]
+y = df['Sport']
+model = KNeighborsClassifier(n_neighbors=3)
+model.fit(X, y)
+print(model.predict([[30, 1]]))
