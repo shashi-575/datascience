@@ -1,0 +1,18 @@
+import numpy as np
+
+X = np.array([2,4,10,12,3,20,30,11,25], float)
+centroids = np.array([4,11], float)
+
+for i in range(5):
+    labels = np.argmin(abs(X[:,None] - centroids), axis=1)
+    new_centroids = np.array([X[labels==j].mean() for j in range(2)])
+    
+    print(f"\nIter {i+1}")
+    print("Old:", centroids, " New:", new_centroids)
+    
+    if np.allclose(centroids, new_centroids): break
+    centroids = new_centroids
+
+
+new = 19
+print("\nCluster:", np.argmin(abs(new - centroids)))
