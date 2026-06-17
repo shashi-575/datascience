@@ -1,0 +1,34 @@
+from sklearn.datasets import load_iris
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+
+# Load dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Train model
+model = LinearRegression()
+model.fit(X, y)
+
+# Predictions
+pred = model.predict(X)
+
+print("First 5 Predictions:", pred[:5])
+
+# Plot 1: Actual vs Predicted
+plt.scatter(y, pred)
+plt.xlabel("Actual Values")
+plt.ylabel("Predicted Values")
+plt.title("Actual vs Predicted (Linear Regression)")
+plt.plot([min(y), max(y)], [min(y), max(y)])
+plt.show()
+
+# Plot 2: Feature vs Prediction
+plt.scatter(X[:, 0], y, label="Actual")
+plt.scatter(X[:, 0], pred, label="Predicted")
+plt.xlabel("Sepal Length")
+plt.ylabel("Target")
+plt.legend()
+plt.title("Feature vs Prediction")
+plt.show()
