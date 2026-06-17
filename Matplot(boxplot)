@@ -1,0 +1,12 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+data = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+
+plt.figure()
+plt.boxplot(data["sepal width (cm)"])
+plt.title("Boxplot of Sepal Width")
+plt.ylabel("Sepal Width (cm)")
+plt.show()
