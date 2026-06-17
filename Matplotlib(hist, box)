@@ -1,0 +1,15 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.datasets import load_iris
+
+# Load data
+data = pd.DataFrame(load_iris().data, columns=load_iris().feature_names)
+
+# Histograms
+data.hist(figsize=(8,6))
+plt.tight_layout()
+plt.show()
+
+# Boxplot
+plt.boxplot(data.values, labels=data.columns)
+plt.show()
