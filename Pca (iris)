@@ -1,0 +1,19 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+X, y = iris.data[:, :2], iris.target
+
+X_p = PCA(n_components=1).fit_transform(X)
+
+plt.subplot(1,2,1)
+plt.scatter(X[:,0], X[:,1], c=y)
+
+plt.subplot(1,2,2)
+plt.scatter(X_p, np.zeros_like(X_p), c=y)
+
+plt.show()
+
+print("Variance:", PCA(n_components=1).fit(X).explained_variance_ratio_)
