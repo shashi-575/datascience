@@ -1,0 +1,14 @@
+import pandas as pd
+
+data = {
+    'Size': ['Small', 'Large', 'Medium', 'Small', 'Large'],
+    'Color': ['Red', 'Blue', 'Red', 'Green', 'Blue']
+}
+df = pd.DataFrame(data)
+print("--- Original DataFrame ---")
+print(df)
+df['Size_Encoded'] = df['Size'].astype('category').cat.codes
+df['Color_Encoded'] = df['Color'].astype('category').cat.codes
+
+print("\n--- DataFrame After Label Encoding ---")
+print(df)
